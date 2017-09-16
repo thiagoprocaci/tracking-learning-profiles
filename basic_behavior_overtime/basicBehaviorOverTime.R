@@ -50,7 +50,7 @@ lines(filtedBiologyDataQuestion$profile1$period, filtedBiologyDataQuestion$profi
 lines(filtedBiologyDataQuestion$profile2$period, filtedBiologyDataQuestion$profile2$accummulated, col="blue", lwd = 2.1 )
 lines(filtedBiologyDataQuestion$profile3$period, filtedBiologyDataQuestion$profile3$accummulated, col="green", lwd = 2.1 )
 lines(filtedBiologyDataQuestion$profile4$period, filtedBiologyDataQuestion$profile4$accummulated, col="orange", lwd = 2.1 )
-legend(1, 240, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
+legend(1, 170, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
        col=c("red", "blue", "green", "orange"), lty=1:1, cex=0.8, lwd = 5.1)
 
 
@@ -65,7 +65,7 @@ lines(filtedBiologyAnswers$profile1$period, filtedBiologyAnswers$profile1$accumm
 lines(filtedBiologyAnswers$profile2$period, filtedBiologyAnswers$profile2$accummulated, col="blue", lwd = 2.1 )
 lines(filtedBiologyAnswers$profile3$period, filtedBiologyAnswers$profile3$accummulated, col="green", lwd = 2.1 )
 lines(filtedBiologyAnswers$profile4$period, filtedBiologyAnswers$profile4$accummulated, col="orange", lwd = 2.1 )
-legend(1, 240, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
+legend(1, 340, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
        col=c("red", "blue", "green", "orange"), lty=1:1, cex=0.8, lwd = 5.1)
 
 
@@ -80,7 +80,7 @@ lines(filtedBiologyComments$profile1$period, filtedBiologyComments$profile1$accu
 lines(filtedBiologyComments$profile2$period, filtedBiologyComments$profile2$accummulated, col="blue", lwd = 2.1 )
 lines(filtedBiologyComments$profile3$period, filtedBiologyComments$profile3$accummulated, col="green", lwd = 2.1 )
 lines(filtedBiologyComments$profile4$period, filtedBiologyComments$profile4$accummulated, col="orange", lwd = 2.1 )
-legend(1, 240, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
+legend(1, 340, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
        col=c("red", "blue", "green", "orange"), lty=1:1, cex=0.8, lwd = 5.1)
 
 
@@ -98,7 +98,7 @@ lines(filtedChemistryDataQuestions$profile1$period, filtedChemistryDataQuestions
 lines(filtedChemistryDataQuestions$profile2$period, filtedChemistryDataQuestions$profile2$accummulated, col="blue", lwd = 2.1 )
 lines(filtedChemistryDataQuestions$profile3$period, filtedChemistryDataQuestions$profile3$accummulated, col="green", lwd = 2.1 )
 lines(filtedChemistryDataQuestions$profile4$period, filtedChemistryDataQuestions$profile4$accummulated, col="orange", lwd = 2.1 )
-legend(1, 380, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
+legend(0.1, 144, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
        col=c("red", "blue", "green", "orange"), lty=1:1, cex=0.8, lwd = 5.1)
 
 
@@ -113,7 +113,7 @@ lines(filtedChemistryAnswers$profile1$period, filtedChemistryAnswers$profile1$ac
 lines(filtedChemistryAnswers$profile2$period, filtedChemistryAnswers$profile2$accummulated, col="blue", lwd = 2.1 )
 lines(filtedChemistryAnswers$profile3$period, filtedChemistryAnswers$profile3$accummulated, col="green", lwd = 2.1 )
 lines(filtedChemistryAnswers$profile4$period, filtedChemistryAnswers$profile4$accummulated, col="orange", lwd = 2.1 )
-legend(1, 380, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
+legend(1, 480, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
        col=c("red", "blue", "green", "orange"), lty=1:1, cex=0.8, lwd = 5.1)
 
 filtedChemistryComments = filterData(chemistryComments)
@@ -127,6 +127,96 @@ lines(filtedChemistryComments$profile1$period, filtedChemistryComments$profile1$
 lines(filtedChemistryComments$profile2$period, filtedChemistryComments$profile2$accummulated, col="blue", lwd = 2.1 )
 lines(filtedChemistryComments$profile3$period, filtedChemistryComments$profile3$accummulated, col="green", lwd = 2.1 )
 lines(filtedChemistryComments$profile4$period, filtedChemistryComments$profile4$accummulated, col="orange", lwd = 2.1 )
-legend(1, 830, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
+legend(1, 1300, legend=c("Newbie", "Junior", "Middle" , "Seniors"),    
        col=c("red", "blue", "green", "orange"), lty=1:1, cex=0.8, lwd = 5.1)
+
+
+print("Newbie Biology Monthly Questions Summary")
+print(summary(filtedBiologyDataQuestion$profile1$myCount))
+
+print("Newbie Biology Monthly Answers Summary")
+print(summary(filtedBiologyAnswers$profile1$myCount))
+
+print("Newbie Biology Monthly Comments Summary")
+print(summary(filtedBiologyComments$profile1$myCount))
+
+print("----------------------------------------")
+
+print("Junior Biology Monthly Questions Summary")
+print(summary(filtedBiologyDataQuestion$profile2$myCount))
+
+print("Junior Biology Monthly Answers Summary")
+print(summary(filtedBiologyAnswers$profile2$myCount))
+
+print("Junior Biology Monthly Comments Summary")
+print(summary(filtedBiologyComments$profile2$myCount))
+
+
+print("----------------------------------------")
+
+print("Middle Biology Monthly Questions Summary")
+print(summary(filtedBiologyDataQuestion$profile3$myCount))
+
+print("Middle Biology Monthly Answers Summary")
+print(summary(filtedBiologyAnswers$profile3$myCount))
+
+print("Middle Biology Monthly Comments Summary")
+print(summary(filtedBiologyComments$profile3$myCount))
+
+print("----------------------------------------")
+
+print("Seniors Biology Monthly Questions Summary")
+print(summary(filtedBiologyDataQuestion$profile4$myCount))
+
+print("Seniors Biology Monthly Answers Summary")
+print(summary(filtedBiologyAnswers$profile4$myCount))
+
+print("Seniors Biology Monthly Comments Summary")
+print(summary(filtedBiologyComments$profile4$myCount))
+
+print("----------------------------------------")
+
+print("Newbie Chemistry Monthly Questions Summary")
+print(summary(filtedChemistryDataQuestions$profile1$myCount))
+
+print("Newbie Chemistry Monthly Answers Summary")
+print(summary(filtedChemistryAnswers$profile1$myCount))
+
+print("Newbie Chemistry Monthly Comments Summary")
+print(summary(filtedChemistryComments$profile1$myCount))
+
+print("----------------------------------------")
+
+print("Junior Chemistry Monthly Questions Summary")
+print(summary(filtedChemistryDataQuestions$profile2$myCount))
+
+print("Junior Chemistry Monthly Answers Summary")
+print(summary(filtedChemistryAnswers$profile2$myCount))
+
+print("Junior Chemistry Monthly Comments Summary")
+print(summary(filtedChemistryComments$profile2$myCount))
+
+print("----------------------------------------")
+
+print("Middle Chemistry Monthly Questions Summary")
+print(summary(filtedChemistryDataQuestions$profile3$myCount))
+
+print("Middle Chemistry Monthly Answers Summary")
+print(summary(filtedChemistryAnswers$profile3$myCount))
+
+print("Middle Chemistry Monthly Comments Summary")
+print(summary(filtedChemistryComments$profile3$myCount))
+
+print("----------------------------------------")
+
+print("Seniors Chemistry Monthly Questions Summary")
+print(summary(filtedChemistryDataQuestions$profile4$myCount))
+
+print("Seniors Chemistry Monthly Answers Summary")
+print(summary(filtedChemistryAnswers$profile4$myCount))
+
+print("Seniors Chemistry Monthly Comments Summary")
+print(summary(filtedChemistryComments$profile4$myCount))
+
+
 
