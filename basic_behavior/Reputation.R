@@ -6,14 +6,19 @@ printCorrelation <- function(biologySubset, chemistrySubset, desc) {
   correlation(biologySubset$questions, biologySubset$reputation, paste("Biology User Questions X Biology User Reputations", desc, sep = " "))
   correlation(biologySubset$answers, biologySubset$reputation, paste("Biology User Answers X Biology User Reputations", desc, sep = " "))
   correlation(biologySubset$comments, biologySubset$reputation, paste("Biology User Comments X Biology User Reputations", desc, sep = " "))
+  correlation(biologySubset$weightedSum, biologySubset$reputation, paste("Biology User Weighted Sum X Biology User Reputations", desc, sep = " "))
+  
   
   correlation(chemistrySubset$questions, chemistrySubset$reputation, paste("Chemistry User Questions X Chemistry User Reputations", desc, sep = " "))
   correlation(chemistrySubset$answers, chemistrySubset$reputation, paste("Chemistry User Answers X Chemistry User Reputations", desc, sep = " "))
   correlation(chemistrySubset$comments, chemistrySubset$reputation, paste("Chemistry User Comments X Chemistry User Reputations", desc, sep = " "))
+  correlation(chemistrySubset$weightedSum, chemistrySubset$reputation, paste("Chemistry User Weighted Sum  X Chemistry User Reputations", desc, sep = " "))
 }
 
 biologyData = read.csv("reputation_biology_correl.csv", header = TRUE, sep = ";")
 chemistryData = read.csv("reputation_chemistry_correl.csv", header = TRUE, sep = ";")
+biologyData[, "weightedSum"] = (0.8 * biologyData$answers) + (0.6 * biologyData$comments) 
+chemistryData[, "weightedSum"] = (0.8 * chemistryData$answers) + (0.6 * chemistryData$comments) 
 
 print("Biology Reputation Overview")
 print(summary(biologyData$reputation))
