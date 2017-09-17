@@ -77,12 +77,12 @@ chemistryPlotBetweenness = ggplot(data=chemistryData,
 
 chemistryPlotPagerank = ggplot(data=chemistryData,
                                   aes(x = period, y = avgPagerank, colour = class)) +
-  xlab("Time Slice") + ylab("Avg. Page Rank") +
+  xlab("Time Slice") + ylab("Avg. Page Rank") +  scale_y_continuous(trans='log10') +
   geom_line()
 
 chemistryPlotEigenvector = ggplot(data=chemistryData,
                                 aes(x = period, y = avgEigenvector, colour = class)) +
-  xlab("Time Slice") + ylab("Avg. Eigenvector") +
+  xlab("Time Slice") + ylab("Avg. Eigenvector")  +  scale_y_continuous(trans='log10') +
   geom_line()
 
 chemistryPlotInteractions = ggplot(data=chemistryData,

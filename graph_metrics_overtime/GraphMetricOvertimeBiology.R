@@ -75,19 +75,19 @@ biologyPlotBetweenness = ggplot(data=biologyData,
   xlab("Time Slice") + ylab("Avg. Betweenness") +
   geom_line()
 
-biologyPlotPagerank = ggplot(data=biologyData,
+biologyPlotPagerank = ggplot(data=biologyData, 
                                aes(x = period, y = avgPagerank, colour = class)) +
-  xlab("Time Slice") + ylab("Avg. Page Rank") +
-  geom_line()
+  xlab("Time Slice") + ylab("Avg. Page Rank") +  scale_y_continuous(trans='log10')  +
+  geom_line() 
 
 biologyPlotEigenvector = ggplot(data=biologyData,
                                   aes(x = period, y = avgEigenvector, colour = class)) +
-  xlab("Time Slice") + ylab("Avg. Eigenvector") +
+  xlab("Time Slice") + ylab("Avg. Eigenvector") +  scale_y_continuous(trans='log10') +
   geom_line()
 
 biologyPlotInteractions = ggplot(data=biologyData,
                                    aes(x = period, y = avgInteractions, colour = class)) +
-  xlab("Time Slice") + ylab("Avg. Interactions") +
+  xlab("Time Slice") + ylab("Avg. Interactions")  +
   geom_line()
 
 
