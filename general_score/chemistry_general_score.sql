@@ -10,6 +10,6 @@ u.reputation,
 (select sum(c.score) from chemistry_comment c where c.id_user = u.id ) as sumScoreComments
 
 from chemistry_user_profile u
-where u.profile > 1
+where u.profile > 0
 order by u.reputation 
 

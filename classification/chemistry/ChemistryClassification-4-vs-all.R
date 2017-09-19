@@ -1,28 +1,21 @@
 library(caret)
 library(ggplot2)
 
-data = read.csv("biology.csv", header = TRUE, sep = ";", dec = ",")
+data = read.csv("chemistry.csv", header = TRUE, sep = ";", dec = ",")
 index = 1
 while(index <= nrow(data)) {
   row = data[index, ]
-  if(row$profile == 1) {
-    data[index, "class"] = 'Junior'
-  }
-  if(row$profile == 2) {
-    data[index, "class"] = 'Junior'
-  }
-  if(row$profile == 3) {
-    data[index, "class"] = 'Junior'
-  }
   if(row$profile == 4) {
-    data[index, "class"] = 'Senior'
+    data[index, "class"] = 'outstanding'
+  } else {
+    data[index, "class"] = 'ordinary'
   }
   index = index + 1
 }
 
 
 set.seed(825)
-trainIndex <- createDataPartition(data$class, p = .7, 
+trainIndex <- createDataPartition(data$class, p = .6, 
                                   list = FALSE, 
                                   times = 1)
 dataTrain <- data[ trainIndex,]
@@ -52,7 +45,7 @@ if(runModel) {
   
   
   #eccentricity + indegree + outdegree  + page_rank + betweenness + eigenvector
-  modelFit <- train(class ~  degree + answers + comments + modularity_class, data = dataTrain, 
+  modelFit <- train(class ~  degree + answers + comments + betweenness, data = dataTrain, 
                     method = "gbm",  
                     trControl = fitControl,
                     #tuneGrid = grid,
@@ -67,33 +60,17 @@ if(runModel) {
   
   print(cm)
   
-  saveRDS(modelFit, "gbm2.rds")
-#  index = 1
-#  while(index <= nrow(data)) {
-#    row = data[index, ]
-#    predictions <- predict(modelFit, newdata = row)
-#    print(predictions[1])
-#    index = index + 1
-#  }
+  precision <- cm$byClass['Pos Pred Value']    
+  recall <- cm$byClass['Sensitivity']
+  
+  print("F-measure")
+  print((2 * precision * recall)/(precision + recall))
+
   
   
 }
 
 
 
-#u.reputation,
-#n.betweenness,
-#n.closeness,
-#n.eccentricity,
-#n.harmonic_closeness,
-#n.page_rank,
-#n.indegree,
-#n.outdegree,
-#n.degree,
-#n.eigenvector,
-#n.modularity_class,
-#n.clustering_coefficient,
-#n.interactions,
-#n.strongly_component,
-#n.weakly_component
+
 

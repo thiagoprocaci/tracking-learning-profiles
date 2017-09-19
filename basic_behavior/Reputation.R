@@ -44,10 +44,10 @@ chemistrySubset = subset(chemistryData, chemistryData$profile == 4)
 
 #super experts
 
-superBiologyExperts = tail(biologySubset, trunc(nrow(biologySubset)/2))
-superChemistryExperts = tail(chemistrySubset, trunc(nrow(chemistrySubset)/2))
+#superBiologyExperts = tail(biologySubset, trunc(nrow(biologySubset)/2))
+#superChemistryExperts = tail(chemistrySubset, trunc(nrow(chemistrySubset)/2))
 
-printCorrelation(superBiologyExperts, superChemistryExperts, "Correlation Super Experts")
+#printCorrelation(superBiologyExperts, superChemistryExperts, "Correlation Super Experts")
 
 
 

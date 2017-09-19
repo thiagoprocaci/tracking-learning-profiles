@@ -1,0 +1,36 @@
+Tuning parameter 'shrinkage' was held constant at a value of 0.1
+Tuning parameter 'n.minobsinnode' was
+ held constant at a value of 10
+ROC was used to select the optimal model using  the largest value.
+The final values used for the model were n.trees = 100, interaction.depth = 3, shrinkage = 0.1 and
+ n.minobsinnode = 10. 
+[1] "Prediction"
+Confusion Matrix and Statistics
+
+             Reference
+Prediction    ordinary outstanding
+  ordinary        3245         931
+  outstanding      125         493
+                                          
+               Accuracy : 0.7797          
+                 95% CI : (0.7677, 0.7914)
+    No Information Rate : 0.703           
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.3695          
+ Mcnemar's Test P-Value : < 2.2e-16       
+                                          
+            Sensitivity : 0.9629          
+            Specificity : 0.3462          
+         Pos Pred Value : 0.7771          
+         Neg Pred Value : 0.7977          
+             Prevalence : 0.7030          
+         Detection Rate : 0.6769          
+   Detection Prevalence : 0.8711          
+      Balanced Accuracy : 0.6546          
+                                          
+       'Positive' Class : ordinary        
+                                          
+[1] "F-measure"
+Pos Pred Value 
+     0.8600583 
