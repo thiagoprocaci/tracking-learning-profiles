@@ -1,24 +1,18 @@
 options(warn=-1)
 
 library(ggplot2)
-source("../functions/Functions.R")
+source("../../functions/Functions.R")
 
 defineClass <- function(data) {
   data[, "class"] =  ""
   index = 1
   while(index <= nrow(data)) {
     row = data[index, ]
-    if(1 == row$profile) {
-      data[index, "class"] = "1. Newbie"
+    if(1 == row$profile_2) {
+      data[index, "class"] = "Ordinary"
     }
-    if(2 == row$profile) {
-      data[index, "class"] = "2. Junior"
-    }
-    if(3 == row$profile) {
-      data[index, "class"] = "3. Middle"
-    }
-    if(4 == row$profile) {
-      data[index, "class"] = "4. Senior"
+    if(4 == row$profile_2) {
+      data[index, "class"] = "Outstanding"
     }
     index = index + 1
   }
@@ -26,14 +20,9 @@ defineClass <- function(data) {
 }
 
 
-biologyData = defineClass(read.csv("biology_language_traits.csv", header = TRUE, sep = ";", dec = ","))
-chemistryData = defineClass(read.csv("chemistry_language_traits.csv", header = TRUE, sep = ";", dec = ","))
+biologyData = defineClass(read.csv("biology.csv", header = TRUE, sep = ";", dec = ","))
+chemistryData = defineClass(read.csv("chemistry.csv", header = TRUE, sep = ";", dec = ","))
 
-
-
-#print(qplot(post_type, ariTextAvg, colour = class, data = biologyData, ylab = "Avg. ARI", xlab = "Post Type", main = "Biology" ))
-#print(qplot(post_type, smogTextAvg, colour = class, data = biologyData , ylab = "Avg. SMOG", xlab = "Post Type", main = "Biology" ))
-#print(qplot(post_type, fleschReadingTextAvg, colour = class, data = biologyData, ylab = "Avg. Flesch Reading", xlab = "Post Type", main = "Biology"))
 
 
 require(gridExtra)
