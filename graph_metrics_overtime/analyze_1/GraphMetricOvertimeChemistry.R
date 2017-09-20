@@ -12,20 +12,14 @@ read <- function(path) {
   index = 1
   while(index <= nrow(data)) {
     row = data[index, ]
-    if(1 == row$profile) {
-      data[index, "class"] = "1. Newbie"
+    if(1 == row$profile_1) {
+      data[index, "class"] = "Ordinary"
     }
-    if(2 == row$profile) {
-      data[index, "class"] = "2. Junior"
-    }
-    if(3 == row$profile) {
-      data[index, "class"] = "3. Middle"
-    }
-    if(4 == row$profile) {
-      data[index, "class"] = "4. Senior"
+    if(4 == row$profile_1) {
+      data[index, "class"] = "Outstanding"
     }
     
-    mysub = subset(data, data$profile == row$profile & data$period == (row$period - 1))
+    mysub = subset(data, data$profile_1 == row$profile_1 & data$period == (row$period - 1))
     if(nrow(mysub) == 1) {
       data[index, "avgDegreeImprovement"] =  (row$avgDegree * 100 / mysub$avgDegree) - 100  
       data[index, "avgIndegreeImprovement"] =  (row$avgIndegree * 100 / mysub$avgIndegree) - 100  
@@ -50,55 +44,56 @@ read <- function(path) {
 }
 
 
-biologyData = read("biology.csv")
+chemistryData = read("chemistry.csv")
 
 library("ggplot2")
 require(gridExtra)
 
-biologyPlotDegree = ggplot(data=biologyData,
-                             aes(x = period, y = avgDegree, colour = class)) +
+chemistryPlotDegree = ggplot(data=chemistryData,
+                 aes(x = period, y = avgDegree, colour = class)) +
   xlab("Time Slice") + ylab("Avg. Degree") +
   geom_line()
 
-biologyPlotIndegree = ggplot(data=biologyData,
-                               aes(x = period, y = avgIndegree, colour = class)) +
+chemistryPlotIndegree = ggplot(data=chemistryData,
+                             aes(x = period, y = avgIndegree, colour = class)) +
   xlab("Time Slice") + ylab("Avg. Indegree") +
   geom_line()
 
-biologyPlotOutdegree = ggplot(data=biologyData,
-                                aes(x = period, y = avgOutdegree, colour = class)) +
+chemistryPlotOutdegree = ggplot(data=chemistryData,
+                               aes(x = period, y = avgOutdegree, colour = class)) +
   xlab("Time Slice") + ylab("Avg. Outdegree") +
   geom_line()
 
-biologyPlotBetweenness = ggplot(data=biologyData,
-                                  aes(x = period, y = avgBetweenness, colour = class)) +
+chemistryPlotBetweenness = ggplot(data=chemistryData,
+                                aes(x = period, y = avgBetweenness, colour = class)) +
   xlab("Time Slice") + ylab("Avg. Betweenness") +
   geom_line()
 
-biologyPlotPagerank = ggplot(data=biologyData, 
-                               aes(x = period, y = avgPagerank, colour = class)) +
-  xlab("Time Slice") + ylab("Avg. Page Rank") +  scale_y_continuous(trans='log10')  +
-  geom_line() 
-
-biologyPlotEigenvector = ggplot(data=biologyData,
-                                  aes(x = period, y = avgEigenvector, colour = class)) +
-  xlab("Time Slice") + ylab("Avg. Eigenvector") +  scale_y_continuous(trans='log10') +
+chemistryPlotPagerank = ggplot(data=chemistryData,
+                                  aes(x = period, y = avgPagerank, colour = class)) +
+  xlab("Time Slice") + ylab("Avg. Page Rank") +  scale_y_continuous(trans='log10') +
   geom_line()
 
-biologyPlotInteractions = ggplot(data=biologyData,
-                                   aes(x = period, y = avgInteractions, colour = class)) +
-  xlab("Time Slice") + ylab("Avg. Interactions")  +
+chemistryPlotEigenvector = ggplot(data=chemistryData,
+                                aes(x = period, y = avgEigenvector, colour = class)) +
+  xlab("Time Slice") + ylab("Avg. Eigenvector")  +  scale_y_continuous(trans='log10') +
+  geom_line()
+
+chemistryPlotInteractions = ggplot(data=chemistryData,
+                                  aes(x = period, y = avgInteractions, colour = class)) +
+  xlab("Time Slice") + ylab("Avg. Interactions") +
   geom_line()
 
 
 
 
-grid.arrange( biologyPlotDegree, biologyPlotIndegree, biologyPlotOutdegree, biologyPlotBetweenness, 
-              biologyPlotPagerank,  biologyPlotEigenvector, biologyPlotInteractions,   ncol=4, top = "Biology")
+grid.arrange( chemistryPlotDegree, chemistryPlotIndegree, chemistryPlotOutdegree, chemistryPlotBetweenness, 
+              chemistryPlotPagerank,  chemistryPlotEigenvector, chemistryPlotInteractions,   ncol=4, top = "Chemistry")
+
 
 index = 1
 while(index <= 4) {
-  mysub = subset(biologyData, biologyData$profile == index)
+  mysub = subset(chemistryData, chemistryData$profile_1 == index)
   print(paste("% degree improvement profile ", index))
   print(summary(mysub$avgDegreeImprovement))
   
@@ -120,7 +115,7 @@ while(index <= 4) {
   print(paste("% interactions improvement profile ", index))
   print(summary(mysub$avgInteractions))
   
-  index = index + 1
+  index = index + 3
 }
 
 

@@ -1,6 +1,6 @@
 select  
 g.period,
-u.profile,
+u.profile_2,
 avg(n.degree) as avgDegree,
 avg(n.indegree) as avgIndegree,
 avg(n.outdegree) as avgOutdegree,
@@ -13,5 +13,5 @@ from chemistry_user_profile u
 inner join graph_node n on u.id = n.id_user
 inner join graph_analysis_context g on g.id = n.id_graph_analysis_context
 
-group by g.period, u.profile
-order by g.period, u.profile
+group by g.period, u.profile_2
+order by g.period, u.profile_2
