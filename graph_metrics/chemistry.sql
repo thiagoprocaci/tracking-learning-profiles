@@ -4,7 +4,8 @@ g.id as graph_context_id,
 u.id as user_id,
 u.reputation,
 u.id_community,
-u.profile,
+u.profile_1,
+u.profile_2,
 n.*
 from chemistry_user_profile u
 inner join graph_node n on u.id = n.id_user

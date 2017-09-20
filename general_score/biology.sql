@@ -1,6 +1,7 @@
 select  
 u.id,
-u.profile,
+u.profile_1,
+u.profile_2,
 u.reputation,
 (select avg(q.score) from biology_question q where q.id_user = u.id ) as avgScoreQuestion,
 (select avg(a.score) from biology_answer a where a.id_user = u.id ) as avgScoreAnswers,
@@ -10,6 +11,5 @@ u.reputation,
 (select sum(c.score) from biology_comment c where c.id_user = u.id ) as sumScoreComments
 
 from biology_user_profile u
-where u.profile > 0
 order by u.reputation 
 

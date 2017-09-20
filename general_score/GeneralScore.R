@@ -3,8 +3,8 @@ options(warn=-1)
 source("../functions/Functions.R")
 
 
-biologyData = read.csv("biology_general_score.csv", header = TRUE, sep = ";")
-chemistryData = read.csv("chemistry_general_score.csv", header = TRUE, sep = ";")
+biologyData = read.csv("biology.csv", header = TRUE, sep = ";")
+chemistryData = read.csv("chemistry.csv", header = TRUE, sep = ";")
 
 
 chemistryData[, "avgScoreQuestion"] <- ifelse(chemistryData$avgScoreQuestion == "\\N", 0, chemistryData$avgScoreQuestion)
@@ -23,41 +23,41 @@ biologyData[, "sumScoreAnswers"] <- ifelse(biologyData$sumScoreAnswers == "\\N",
 biologyData[, "sumScoreComments"] <- ifelse(biologyData$sumScoreComments == "\\N", 0, biologyData$sumScoreComments)
 
 
-biologySubset2 = subset(biologyData, biologyData$profile == 2)
-chemistrySubset2 = subset(chemistryData, chemistryData$profile == 2)
+biologySubset1 = subset(biologyData, biologyData$profile_1 == 1)
+chemistrySubset1 = subset(chemistryData, chemistryData$profile_1 == 1)
 
-biologySubset3 = subset(biologyData, biologyData$profile == 3)
-chemistrySubset3 = subset(chemistryData, chemistryData$profile == 3)
-
-biologySubset4 = subset(biologyData, biologyData$profile == 4)
-chemistrySubset4 = subset(chemistryData, chemistryData$profile == 4)
-
-existsDiff(biologySubset4$avgScoreAnswers, biologySubset3$avgScoreAnswers, "Biology AVG Score Answers 4 x 3")
-existsDiff(biologySubset4$avgScoreAnswers, biologySubset2$avgScoreAnswers, "Biology AVG Score Answers 4 x 2")
-existsDiff(biologySubset3$avgScoreAnswers, biologySubset2$avgScoreAnswers, "Biology AVG Score Answers 3 x 2")
-
-existsDiff(biologySubset4$avgScoreComments, biologySubset3$avgScoreComments, "Biology AVG Score Comments 4 x 3")
-existsDiff(biologySubset4$avgScoreComments, biologySubset2$avgScoreComments, "Biology AVG Score Comments 4 x 2")
-existsDiff(biologySubset3$avgScoreComments, biologySubset2$avgScoreComments, "Biology AVG Score Comments 3 x 2")
+biologySubset4 = subset(biologyData, biologyData$profile_1 == 4)
+chemistrySubset4 = subset(chemistryData, chemistryData$profile_1 == 4)
 
 
-existsDiff(biologySubset4$avgScoreQuestion, biologySubset3$avgScoreQuestion, "Biology AVG Score Questions 4 x 3")
-existsDiff(biologySubset4$avgScoreQuestion, biologySubset2$avgScoreQuestion, "Biology AVG Score Questions 4 x 2")
-existsDiff(biologySubset3$avgScoreQuestion, biologySubset2$avgScoreQuestion, "Biology AVG Score Questions 3 x 2")
+existsDiff(biologySubset4$avgScoreAnswers, biologySubset1$avgScoreAnswers, "Biology AVG Score Profile_1")
+existsDiff(biologySubset4$avgScoreComments, biologySubset1$avgScoreComments, "Biology AVG Score Comments Profile_1")
+existsDiff(biologySubset4$avgScoreQuestion, biologySubset1$avgScoreQuestion, "Biology AVG Score Questions Profile_1")
 
 
-existsDiff(chemistrySubset4$avgScoreAnswers, chemistrySubset3$avgScoreAnswers, "Chemistry AVG Score Answers 4 x 3")
-existsDiff(chemistrySubset4$avgScoreAnswers, chemistrySubset2$avgScoreAnswers, "Chemistry AVG Score Answers 4 x 2")
-existsDiff(chemistrySubset3$avgScoreAnswers, chemistrySubset2$avgScoreAnswers, "Chemistry AVG Score Answers 3 x 2")
 
-existsDiff(chemistrySubset4$avgScoreComments, chemistrySubset3$avgScoreComments, "Chemistry AVG Score Comments 4 x 3")
-existsDiff(chemistrySubset4$avgScoreComments, chemistrySubset2$avgScoreComments, "Chemistry AVG Score Comments 4 x 2")
-existsDiff(chemistrySubset3$avgScoreComments, chemistrySubset2$avgScoreComments, "Chemistry AVG Score Comments 3 x 2")
+existsDiff(chemistrySubset4$avgScoreAnswers, chemistrySubset1$avgScoreAnswers, "Chemistry AVG Score Profile_1")
+existsDiff(chemistrySubset4$avgScoreComments, chemistrySubset1$avgScoreComments, "Chemistry AVG Score Comments Profile_1")
+existsDiff(chemistrySubset4$avgScoreQuestion, chemistrySubset1$avgScoreQuestion, "Chemistry AVG Score Questions Profile_1")
 
 
-existsDiff(chemistrySubset4$avgScoreQuestion, chemistrySubset3$avgScoreQuestion, "Chemistry AVG Score Questions 4 x 3")
-existsDiff(chemistrySubset4$avgScoreQuestion, chemistrySubset2$avgScoreQuestion, "Chemistry AVG Score Questions 4 x 2")
-existsDiff(chemistrySubset3$avgScoreQuestion, chemistrySubset2$avgScoreQuestion, "Chemistry AVG Score Questions 3 x 2")
+
+biologySubset1 = subset(biologyData, biologyData$profile_2 == 1)
+chemistrySubset1 = subset(chemistryData, chemistryData$profile_2 == 1)
+
+biologySubset4 = subset(biologyData, biologyData$profile_2 == 4)
+chemistrySubset4 = subset(chemistryData, chemistryData$profile_2 == 4)
+
+
+existsDiff(biologySubset4$avgScoreAnswers, biologySubset1$avgScoreAnswers, "Biology AVG Score Profile_2")
+existsDiff(biologySubset4$avgScoreComments, biologySubset1$avgScoreComments, "Biology AVG Score Comments Profile_2")
+existsDiff(biologySubset4$avgScoreQuestion, biologySubset1$avgScoreQuestion, "Biology AVG Score Questions Profile_2")
+
+
+
+existsDiff(chemistrySubset4$avgScoreAnswers, chemistrySubset1$avgScoreAnswers, "Chemistry AVG Score Profile_2")
+existsDiff(chemistrySubset4$avgScoreComments, chemistrySubset1$avgScoreComments, "Chemistry AVG Score Comments Profile_2")
+existsDiff(chemistrySubset4$avgScoreQuestion, chemistrySubset1$avgScoreQuestion, "Chemistry AVG Score Questions Profile_2")
 
 
 
