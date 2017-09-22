@@ -25,8 +25,8 @@ from (
 		 	q.id as postId,
 			replace(substring_index(q.tags,'>',1), '<', '') as tag1,	
 			(select 'questions' from dual) as description 	
-		from biology_question q
-		inner join biology_user_profile u
+		from chemistry_question q
+		inner join chemistry_user_profile u
 		on u.id = q.id_user
 	
 	
@@ -51,10 +51,10 @@ from (
 		 	a.id as postId,
 			replace(substring_index(q.tags,'>',1), '<', '') as tag1,	
 			(select 'answers' from dual) as description 	
-		from biology_answer a
-		inner join biology_user_profile u
+		from chemistry_answer a
+		inner join chemistry_user_profile u
 		on u.id = a.id_user
-		inner join biology_question q 
+		inner join chemistry_question q 
 		on q.id_post_comm = a.parent_post_comm_id
 	
 	)A group by A.userId, A.tag1
@@ -78,10 +78,10 @@ from (
 		 	c.id as postId,
 			replace(substring_index(q.tags,'>',1), '<', '') as tag1,	
 			(select 'comments_question' from dual) as description 	
-		from biology_comment c
-		inner join biology_user_profile u
+		from chemistry_comment c
+		inner join chemistry_user_profile u
 		on u.id = c.id_user
-		inner join biology_question q 
+		inner join chemistry_question q 
 		on q.id = c.id_post
 	
 	)A group by A.userId, A.tag1
@@ -105,12 +105,12 @@ from (
 		 	c.id as postId,
 			replace(substring_index(q.tags,'>',1), '<', '') as tag1,	
 			(select 'comments_answer' from dual) as description 	
-		from biology_comment c
-		inner join biology_user_profile u
+		from chemistry_comment c
+		inner join chemistry_user_profile u
 		on u.id = c.id_user
-		inner join biology_answer a 
+		inner join chemistry_answer a 
 		on a.id = c.id_post
-		inner join biology_question q
+		inner join chemistry_question q
 		on q.id_post_comm = a.parent_post_comm_id
 	
 	)A group by A.userId, A.tag1
