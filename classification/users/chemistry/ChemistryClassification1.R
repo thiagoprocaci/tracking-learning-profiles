@@ -1,23 +1,23 @@
 library(caret)
 library(ggplot2)
 
-data = read.csv("biology.csv", header = TRUE, sep = ";", dec = ",")
+dataGraph = read.csv("chemistry_graph.csv", header = TRUE, sep = ";", dec = ",")
 index = 1
-while(index <= nrow(data)) {
-  row = data[index, ]
-  
-  if(row$profile == 2) {
-    data[index, "class"] = 'outstanding'
-  } else if(row$profile == 3) {
-    data[index, "class"] = 'outstanding'
-  } else if(row$profile == 4) {
-    data[index, "class"] = 'outstanding'
+while(index <= nrow(dataGraph)) {
+  row = dataGraph[index, ]
+  if(row$profile_1 == 4) {
+    dataGraph[index, "class"] = 'outstanding'
   } else {
-    data[index, "class"] = 'ordinary'
+    dataGraph[index, "class"] = 'ordinary'
   }
   index = index + 1
 }
 
+dataLanguage = read.csv("chemistry_language.csv", header = TRUE, sep = ";", dec = ",")
+dataLanguageAnswers = subset(dataLanguage, dataLanguage$post_type == "answer")
+
+data = merge(dataGraph, dataLanguageAnswers, by = "id", all.x = TRUE)
+data[, "complexWordsTextAvg"] = ifelse(is.finite(data$complexWordsTextAvg), data$complexWordsTextAvg, 0)
 
 set.seed(825)
 trainIndex <- createDataPartition(data$class, p = .6, 
@@ -26,17 +26,7 @@ trainIndex <- createDataPartition(data$class, p = .6,
 dataTrain <- data[ trainIndex,]
 dataTest  <- data[-trainIndex,]
 
-#feature_plot = featurePlot(x=dataTrain[ , c("interactions", "degree", "betweenness")] ,
-#              y = dataTrain$class, plot = "pairs")
 
-#plot = qplot(interactions, degree, colour = class,  data =dataTrain) 
-#plot2 = qplot(interactions, betweenness, colour = class,  data =dataTrain) 
-#plot3 = qplot(interactions, modularity_class, colour = class,  data =dataTrain) 
-
-#print(feature_plot)
-#print(plot)
-#print(plot2)
-#print(plot3)
 
 runModel = TRUE
 
@@ -50,7 +40,7 @@ if(runModel) {
   
   
   #eccentricity + indegree + outdegree  + page_rank + betweenness + eigenvector
-  modelFit <- train(class ~  degree + answers + comments + betweenness, data = dataTrain, 
+  modelFit <- train(class ~  indegree + page_rank + outdegree + answers + comments + betweenness + complexWordsTextAvg, data = dataTrain, 
                     method = "gbm",  
                     trControl = fitControl,
                     #tuneGrid = grid,
@@ -72,7 +62,13 @@ if(runModel) {
   print((2 * precision * recall)/(precision + recall))
 
   
+  print((2 * precision * recall)/(precision + recall))
   
+  trellis.par.set(caretTheme())
+  print(plot(modelFit, metric = "ROC"))
+  
+  print(plot(modelFit, metric = "ROC", plotType = "level",
+             scales = list(x = list(rot = 90))))
 }
 
 
