@@ -2,9 +2,11 @@ library(ggplot2)
 
 biologyData =   read.csv("biology.csv", header = TRUE, sep = ";")
 biologyData [, "class"] = ifelse(biologyData$profile_1 == 4, "outstanding", "ordinary")
+biologyData [, "avg"] = biologyData$myCount/biologyData$totalUserProfile
 
 chemistryData =  read.csv("chemistry.csv", header = TRUE, sep = ";")
 chemistryData [, "class"] = ifelse(chemistryData$profile_1 == 4, "outstanding", "ordinary")
+chemistryData [, "avg"] = chemistryData$myCount/chemistryData$totalUserProfile
 
 biologyDataQuestion = subset(biologyData, biologyData$description == "questions")
 biologyDataAnswers = subset(biologyData, biologyData$description == "answers")
@@ -50,7 +52,8 @@ chemistryPlotComments = ggplot(data=chemistryDataComments,
   geom_line()
 
 grid.arrange(bioPlotQuestions, bioPlotAnswers, bioPlotComments, 
-             chemistryPlotQuestions,chemistryPlotAnswers, chemistryPlotComments, ncol=3)
+             #chemistryPlotQuestions,chemistryPlotAnswers, chemistryPlotComments,
+             ncol=3)
 
 biologyDataQuestionOutstanding = subset(biologyDataQuestion, biologyDataQuestion$profile_1 == 4)
 biologyDataQuestionOrdinary = subset(biologyDataQuestion, biologyDataQuestion$profile_1 == 1)
@@ -63,19 +66,15 @@ biologyDataCommentsOrdinary = subset(biologyDataComments, biologyDataComments$pr
 
 print("Biology Questions Number Outstanding Per Period")
 print(summary(biologyDataQuestionOutstanding$myCount))
-
-print("Biology Questions Number Ordinary Per Period")
-print(summary(biologyDataQuestionOrdinary$myCount))
-
 print("Biology Answers Number Outstanding Per Period")
 print(summary(biologyDataAnswersOutstanding$myCount))
-
-print("Biology Answers Number Ordinary Per Period")
-print(summary(biologyDataAnswersOrdinary$myCount))
-
 print("Biology Comments Number Outstanding Per Period")
 print(summary(biologyDataCommentsOutstanding$myCount))
 
+print("Biology Questions Number Ordinary Per Period")
+print(summary(biologyDataQuestionOrdinary$myCount))
+print("Biology Answers Number Ordinary Per Period")
+print(summary(biologyDataAnswersOrdinary$myCount))
 print("Biology Comments Number Ordinary Per Period")
 print(summary(biologyDataCommentsOrdinary$myCount))
 
@@ -92,19 +91,16 @@ chemistryDataCommentsOrdinary = subset(chemistryDataComments, chemistryDataComme
 
 print("Chemistry Questions Number Outstanding Per Period")
 print(summary(chemistryDataQuestionOutstanding$myCount))
-
-print("Chemistry Questions Number Ordinary Per Period")
-print(summary(chemistryDataQuestionOrdinary$myCount))
-
 print("Chemistry Answers Number Outstanding Per Period")
 print(summary(chemistryDataAnswersOutstanding$myCount))
-
-print("Chemistry Answers Number Ordinary Per Period")
-print(summary(chemistryDataAnswersOrdinary$myCount))
-
 print("Chemistry Comments Number Outstanding Per Period")
 print(summary(chemistryDataCommentsOutstanding$myCount))
 
+
+print("Chemistry Questions Number Ordinary Per Period")
+print(summary(chemistryDataQuestionOrdinary$myCount))
+print("Chemistry Answers Number Ordinary Per Period")
+print(summary(chemistryDataAnswersOrdinary$myCount))
 print("Chemistry Comments Number Ordinary Per Period")
 print(summary(chemistryDataCommentsOrdinary$myCount))
 

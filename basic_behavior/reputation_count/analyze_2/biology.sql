@@ -1,4 +1,4 @@
-select profile, 
+select profile_2, 
 min(reputation) as minRep,
 max(reputation) as maxRep ,
 avg(reputation) as avgRep ,
