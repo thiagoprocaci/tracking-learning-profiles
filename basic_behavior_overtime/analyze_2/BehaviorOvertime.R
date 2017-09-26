@@ -86,7 +86,7 @@ chemistryDataQuestionOrdinary = subset(chemistryDataQuestion, chemistryDataQuest
 chemistryDataAnswersOutstanding = subset(chemistryDataAnswers, chemistryDataAnswers$profile_2 == 4)
 chemistryDataAnswersOrdinary = subset(chemistryDataAnswers, chemistryDataAnswers$profile_2 == 1)
 
-chemistryDataCommentsOutstanding = subset(biologyDataComments, chemistryDataComments$profile_2 == 4)
+chemistryDataCommentsOutstanding = subset(chemistryDataComments, chemistryDataComments$profile_2 == 4)
 chemistryDataCommentsOrdinary = subset(chemistryDataComments, chemistryDataComments$profile_2 == 1)
 
 
@@ -103,9 +103,6 @@ print(summary(chemistryDataQuestionOrdinary$myCount))
 
 print("Chemistry Answers Number Outstanding Per Period")
 print(summary(chemistryDataAnswersOutstanding$myCount))
-
-
-
 
 
 print("Chemistry Comments Number Ordinary Per Period")

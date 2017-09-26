@@ -52,7 +52,7 @@ chemistryPlotComments = ggplot(data=chemistryDataComments,
   geom_line()
 
 grid.arrange(bioPlotQuestions, bioPlotAnswers, bioPlotComments, 
-             #chemistryPlotQuestions,chemistryPlotAnswers, chemistryPlotComments,
+             chemistryPlotQuestions,chemistryPlotAnswers, chemistryPlotComments,
              ncol=3)
 
 biologyDataQuestionOutstanding = subset(biologyDataQuestion, biologyDataQuestion$profile_1 == 4)
@@ -85,7 +85,7 @@ chemistryDataQuestionOrdinary = subset(chemistryDataQuestion, chemistryDataQuest
 chemistryDataAnswersOutstanding = subset(chemistryDataAnswers, chemistryDataAnswers$profile_1 == 4)
 chemistryDataAnswersOrdinary = subset(chemistryDataAnswers, chemistryDataAnswers$profile_1 == 1)
 
-chemistryDataCommentsOutstanding = subset(biologyDataComments, chemistryDataComments$profile_1 == 4)
+chemistryDataCommentsOutstanding = subset(chemistryDataComments, chemistryDataComments$profile_1 == 4)
 chemistryDataCommentsOrdinary = subset(chemistryDataComments, chemistryDataComments$profile_1 == 1)
 
 
