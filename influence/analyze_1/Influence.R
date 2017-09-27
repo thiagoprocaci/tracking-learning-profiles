@@ -11,14 +11,14 @@ chemistryData[, "contains_outstanding"] = ifelse(chemistryData$containsOutstandi
 biologyPlot= ggplot(data=biologyData,
                            aes(x = period, y = avgSize, colour = contains_outstanding)) +
   xlab("Time Slice") + ylab("Avg. Discussion Size") +
-  geom_point()
+  geom_line()
 
 print(biologyPlot)
 
 chemistryPlot= ggplot(data=chemistryData,
                     aes(x = period, y = avgSize, colour = contains_outstanding)) +
   xlab("Time Slice") + ylab("Avg. Discussion Size") +
-  geom_point()
+  geom_line()
 
 
 print(chemistryPlot)

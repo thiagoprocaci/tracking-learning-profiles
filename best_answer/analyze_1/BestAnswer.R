@@ -30,12 +30,12 @@ require(gridExtra)
 
 bioPlot = ggplot(data=biologyData,
                  aes(x = period, y = probBestAnswer, colour = class)) +
-  xlab("Time Slice") + ylab("Prob. of giving the best answer") +
+  xlab("Time Slice") + ylab("Prob. best answer BQA") +
   geom_line()
 
 chemistryPlot = ggplot(data=chemistryData,
                        aes(x = period, y = probBestAnswer, colour = class)) +
-  xlab("Time Slice") + ylab("Prob. of giving the best answer") +
+  xlab("Time Slice") + ylab("Prob. best answer CQA") +
   geom_line()
 
 
