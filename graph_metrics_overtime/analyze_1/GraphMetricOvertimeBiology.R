@@ -84,14 +84,20 @@ biologyPlotInteractions = ggplot(data=biologyData,
   xlab("Time Slice") + ylab("Avg. Interactions")  +
   geom_line()
 
+ print(biologyPlotIndegree)
+ print(biologyPlotOutdegree)
+ print(biologyPlotBetweenness)
+ print(biologyPlotPagerank)
+ print(biologyPlotEigenvector)
 
-
-
-grid.arrange( biologyPlotDegree, biologyPlotIndegree, biologyPlotOutdegree, biologyPlotBetweenness, 
-              biologyPlotPagerank,  biologyPlotEigenvector, biologyPlotInteractions,   ncol=4, top = "Biology")
+#grid.arrange( #biologyPlotDegree, 
+#              biologyPlotIndegree, biologyPlotOutdegree, biologyPlotBetweenness, 
+#              biologyPlotPagerank,  #biologyPlotEigenvector, #biologyPlotInteractions,  
+#              ncol=4, top = "Biology")
 
 index = 1
 while(index <= 4) {
+  biologyData = tail(biologyData, n = 20)
   mysub = subset(biologyData, biologyData$profile_1 == index)
   print(paste("% degree improvement profile ", index))
   print(summary(mysub$avgDegreeImprovement))
