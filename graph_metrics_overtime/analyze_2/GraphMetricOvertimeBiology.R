@@ -92,9 +92,10 @@ grid.arrange( biologyPlotDegree, biologyPlotIndegree, biologyPlotOutdegree, biol
 
 index = 1
 while(index <= 4) {
+  biologyData = tail(biologyData, n = 20)
   mysub = subset(biologyData, biologyData$profile_2 == index)
-  print(paste("% degree improvement profile ", index))
-  print(summary(mysub$avgDegreeImprovement))
+  #print(paste("% degree improvement profile ", index))
+  #print(summary(mysub$avgDegreeImprovement))
   
   print(paste("% indegree improvement profile ", index))
   print(summary(mysub$avgIndegreeImprovement))
@@ -111,8 +112,8 @@ while(index <= 4) {
   print(paste("% eigenvector improvement profile ", index))
   print(summary(mysub$avgEigenvectorImprovement))
   
-  print(paste("% interactions improvement profile ", index))
-  print(summary(mysub$avgInteractions))
+  #print(paste("% interactions improvement profile ", index))
+  #print(summary(mysub$avgInteractions))
   
   index = index + 3
 }

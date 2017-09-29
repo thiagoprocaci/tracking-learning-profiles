@@ -47,6 +47,20 @@ chemistryPlot = ggplot(chemistry, aes(period)) +
 
 print(chemistryPlot)
 
+data2 = merge(biology, chemistry, by = "period", all.x = TRUE)
+
+chemistryPlot = ggplot(data2, aes(period)) + 
+  geom_line(aes(y = avg_degree.x, colour = "avg. degree biology")) + 
+  geom_line(aes(y = avg_dist.x, colour = "avg. distance biology")) + 
+  geom_line(aes(y = avg_degree.y, colour = "avg. degree chemistry")) + 
+  geom_line(aes(y = avg_dist.y, colour = "avg. distance chemistry")) + 
+  #geom_line(aes(y = number_communities.y, colour = "Subcommunities chemistry")) +
+#geom_line(aes(y = number_communities.x, colour = "Subcommunities biology"))+ 
+  ylab("Graph Attribute")
+
+print(chemistryPlot)
+
+
 print("Biology % nodes growth")
 print(summary(tail(biology$nodesImprovement, n = 10)))
 print("Biology % edges growth")

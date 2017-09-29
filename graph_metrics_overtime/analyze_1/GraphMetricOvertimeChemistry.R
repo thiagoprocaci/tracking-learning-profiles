@@ -93,9 +93,11 @@ grid.arrange( chemistryPlotDegree, chemistryPlotIndegree, chemistryPlotOutdegree
 
 index = 1
 while(index <= 4) {
+  chemistryData = tail(chemistryData, n = 20)
+  
   mysub = subset(chemistryData, chemistryData$profile_1 == index)
-  print(paste("% degree improvement profile ", index))
-  print(summary(mysub$avgDegreeImprovement))
+  #print(paste("% degree improvement profile ", index))
+  #print(summary(mysub$avgDegreeImprovement))
   
   print(paste("% indegree improvement profile ", index))
   print(summary(mysub$avgIndegreeImprovement))
@@ -112,8 +114,8 @@ while(index <= 4) {
   print(paste("% eigenvector improvement profile ", index))
   print(summary(mysub$avgEigenvectorImprovement))
   
-  print(paste("% interactions improvement profile ", index))
-  print(summary(mysub$avgInteractions))
+  #print(paste("% interactions improvement profile ", index))
+  #print(summary(mysub$avgInteractions))
   
   index = index + 3
 }
