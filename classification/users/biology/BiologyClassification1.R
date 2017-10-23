@@ -16,8 +16,17 @@ while(index <= nrow(dataGraph)) {
 dataLanguage = read.csv("biology_language.csv", header = TRUE, sep = ";", dec = ",")
 dataLanguageAnswers = subset(dataLanguage, dataLanguage$post_type == "answer")
 
+dataEntropy = read.csv("biology-entropy.csv", header = TRUE, sep = ",", dec = ",")
+
+colnames(dataEntropy)[1] <- "id"
+
 data = merge(dataGraph, dataLanguageAnswers, by = "id", all.x = TRUE)
+data = merge(data, dataEntropy,  by = "id", all.x = TRUE )
+
+
+data[, "entropy"] = ifelse(is.na(data$entropy),  0, data$entropy)
 data[, "complexWordsTextAvg"] = ifelse(is.finite(data$complexWordsTextAvg), data$complexWordsTextAvg, 0)
+
 
 set.seed(825)
 trainIndex <- createDataPartition(data$class, p = .6, 
@@ -31,16 +40,16 @@ dataTest  <- data[-trainIndex,]
 runModel = TRUE
 
 if(runModel) {
-  fitControl <- trainControl(## 10-fold CV
+  fitControl <- trainControl(## 5-fold CV
     method = "repeatedcv",
-    number = 10, 
+    number = 5, 
     classProbs = TRUE,
     summaryFunction = twoClassSummary,
     repeats = 10)  
   
   
   #eccentricity + indegree + outdegree  + page_rank + betweenness + eigenvector
-  modelFit <- train(class ~  indegree + page_rank + outdegree + answers + comments + betweenness + complexWordsTextAvg, data = dataTrain, 
+  modelFit <- train(class ~  entropy + indegree + page_rank + outdegree + answers + comments + betweenness + complexWordsTextAvg, data = dataTrain, 
                     method = "gbm",  
                     trControl = fitControl,
                     #tuneGrid = grid,
@@ -61,7 +70,7 @@ if(runModel) {
   print("F-measure")
   print((2 * precision * recall)/(precision + recall))
   
-  print((2 * precision * recall)/(precision + recall))
+
   
   trellis.par.set(caretTheme())
   print(plot(modelFit, metric = "ROC"))

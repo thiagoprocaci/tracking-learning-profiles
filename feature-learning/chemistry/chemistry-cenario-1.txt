@@ -1,0 +1,58 @@
+Stochastic Gradient Boosting 
+
+7192 samples
+   5 predictors
+   2 classes: 'ordinary', 'outstanding' 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold, repeated 10 times) 
+Summary of sample sizes: 5753, 5753, 5754, 5754, 5754, 5754, ... 
+Resampling results across tuning parameters:
+
+  interaction.depth  n.trees  ROC        Sens       Spec     
+  1                   50      0.7483079  0.9592901  0.1816807
+  1                  100      0.7530543  0.9554011  0.2189899
+  1                  150      0.7549984  0.9527546  0.2279673
+  2                   50      0.7577302  0.9568055  0.2271750
+  2                  100      0.7605686  0.9520341  0.2556845
+  2                  150      0.7615479  0.9494953  0.2654529
+  3                   50      0.7614047  0.9547712  0.2512227
+  3                  100      0.7626992  0.9480190  0.2752767
+  3                  150      0.7621595  0.9448322  0.2822365
+
+Tuning parameter 'shrinkage' was held constant at a value of 0.1
+Tuning
+ parameter 'n.minobsinnode' was held constant at a value of 10
+ROC was used to select the optimal model using  the largest value.
+The final values used for the model were n.trees = 100, interaction.depth = 3, shrinkage =
+ 0.1 and n.minobsinnode = 10.
+[1] "Prediction"
+Confusion Matrix and Statistics
+
+             Reference
+Prediction    ordinary outstanding
+  ordinary        3515         775
+  outstanding      187         317
+                                          
+               Accuracy : 0.7993          
+                 95% CI : (0.7877, 0.8106)
+    No Information Rate : 0.7722          
+    P-Value [Acc > NIR] : 3.057e-06       
+                                          
+                  Kappa : 0.296           
+ Mcnemar's Test P-Value : < 2.2e-16       
+                                          
+            Sensitivity : 0.9495          
+            Specificity : 0.2903          
+         Pos Pred Value : 0.8193          
+         Neg Pred Value : 0.6290          
+             Prevalence : 0.7722          
+         Detection Rate : 0.7332          
+   Detection Prevalence : 0.8949          
+      Balanced Accuracy : 0.6199          
+                                          
+       'Positive' Class : ordinary        
+                                          
+[1] "F-measure"
+Pos Pred Value 
+     0.8796296 

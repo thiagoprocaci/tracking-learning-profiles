@@ -1,31 +1,23 @@
 library(caret)
 library(ggplot2)
 
-dataGraph = read.csv("chemistry_graph.csv", header = TRUE, sep = ";", dec = ",")
+dataNode2Vec = read.csv("bio-directed.emd", header = FALSE, sep = " ", dec = ".")
+colnames(dataNode2Vec)[1] <- "id"
+
+dataUser = read.csv("bio.users_profile_1", header = TRUE, sep = ";")
+
+data = merge(dataNode2Vec, dataUser, by = "id")
 index = 1
-while(index <= nrow(dataGraph)) {
-  row = dataGraph[index, ]
+while(index <= nrow(data)) {
+  row = data[index, ]
   if(row$profile_1 == 4) {
-    dataGraph[index, "class"] = 'outstanding'
+    data[index, "class"] = 'outstanding'
   } else {
-    dataGraph[index, "class"] = 'ordinary'
+    data[index, "class"] = 'ordinary'
   }
   index = index + 1
 }
 
-dataLanguage = read.csv("chemistry_language.csv", header = TRUE, sep = ";", dec = ",")
-dataLanguageAnswers = subset(dataLanguage, dataLanguage$post_type == "answer")
-
-dataEntropy = read.csv("chemistry-entropy.csv", header = TRUE, sep = ",", dec = ",")
-
-colnames(dataEntropy)[1] <- "id"
-
-data = merge(dataGraph, dataLanguageAnswers, by = "id", all.x = TRUE)
-data = merge(data, dataEntropy,  by = "id", all.x = TRUE )
-
-
-data[, "entropy"] = ifelse(is.na(data$entropy),  0, data$entropy)
-data[, "complexWordsTextAvg"] = ifelse(is.finite(data$complexWordsTextAvg), data$complexWordsTextAvg, 0)
 
 set.seed(825)
 trainIndex <- createDataPartition(data$class, p = .6, 
@@ -47,8 +39,8 @@ if(runModel) {
     repeats = 10)  
   
   
-  #eccentricity + indegree + outdegree  + page_rank + betweenness + eigenvector
-  modelFit <- train(class ~ entropy + indegree + page_rank + outdegree + answers + comments + betweenness + complexWordsTextAvg, data = dataTrain, 
+  
+  modelFit <- train(class ~ V2 + V3 + V4 + V5 + V6, data = dataTrain, 
                     method = "gbm",  
                     trControl = fitControl,
                     #tuneGrid = grid,
@@ -68,18 +60,12 @@ if(runModel) {
   
   print("F-measure")
   print((2 * precision * recall)/(precision + recall))
-
-  
-  #print((2 * precision * recall)/(precision + recall))
   
   trellis.par.set(caretTheme())
   print(plot(modelFit, metric = "ROC"))
   
   print(plot(modelFit, metric = "ROC", plotType = "level",
              scales = list(x = list(rot = 90))))
+  
+  
 }
-
-
-
-
-

@@ -56,3 +56,8 @@ chemistryOrdinary = subset(chemistryData, biologyData$profile_2 == 1)
 
 correlation(chemistryOutstanding$entropy, chemistryOutstanding$reputation, "Outstanding Correl Chemistry Profile 2")
 correlation(chemistryOrdinary$entropy, chemistryOrdinary$reputation, "Ordinary Correl Chemistry Profile 2")
+
+
+
+#write.csv(biologyData, file = "biology-entropy.csv", sep = ",",  row.names=FALSE)
+#write.csv(chemistryData, file = "chemistry-entropy.csv", sep = ",",  row.names=FALSE)
