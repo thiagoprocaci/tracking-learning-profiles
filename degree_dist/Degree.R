@@ -11,4 +11,7 @@ print(summary(dataChemistry$indegree))
 print("Dist Outdegree - Chemistry")
 print(summary(dataChemistry$outdegree))
 
+mydata_hist = hist(dataBiology$indegree)
+print(plot(mydata_hist$count, log="y", type='h', lwd=10, lend=2))
+
 
