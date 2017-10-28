@@ -106,12 +106,12 @@ print(summary(chemistryDataCommentsOrdinary$myCount))
 
 source("../../functions/Functions.R")
 
-#existsDiff(biologyDataQuestionOutstanding$myCount, biologyDataQuestionOrdinary$myCount, "Bio Question Diff Out. x Ord")
+existsDiff(biologyDataQuestionOutstanding$myCount, biologyDataQuestionOrdinary$myCount, "Bio Question Diff Out. x Ord")
 existsDiff(biologyDataAnswersOutstanding$myCount, biologyDataAnswersOrdinary$myCount, "Bio Answers Diff Out. x Ord")
 existsDiff(biologyDataCommentsOutstanding$myCount, biologyDataCommentsOrdinary$myCount, "Bio Comments Diff Out. x Ord")
 
 
-#existsDiff(chemistryDataQuestionOutstanding$myCount, chemistryDataQuestionOrdinary$myCount, "chemistry Question Diff Out. x Ord")
+existsDiff(chemistryDataQuestionOutstanding$myCount, chemistryDataQuestionOrdinary$myCount, "chemistry Question Diff Out. x Ord")
 existsDiff(chemistryDataAnswersOutstanding$myCount, chemistryDataAnswersOrdinary$myCount, "chemistry Answers Diff Out. x Ord")
 existsDiff(chemistryDataCommentsOutstanding$myCount, chemistryDataCommentsOrdinary$myCount, "chemistry Comments Diff Out. x Ord")
 

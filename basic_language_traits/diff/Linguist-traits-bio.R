@@ -29,6 +29,14 @@ print(summary(biologyOutstanding$sentencesTextAvg))
 print("Summary sentences Ord. BIO  - Analyse 1")
 print(summary(biologyOrdinary$sentencesTextAvg))
 
+existsDiff(biologyOutstanding$charactersTextAvg, biologyOrdinary$charactersTextAvg, "Bio Diff characters Outstd. Ord  - Analyse 1")
+print("Summary characters Outstd. BIO  - Analyse 1")
+print(summary(biologyOutstanding$charactersTextAvg))
+print("Summary characters Ord. BIO  - Analyse 1")
+print(summary(biologyOrdinary$charactersTextAvg))
+
+
+
 
 
 biologyOutstanding = subset(biology, biology$profile_2 == 4)
@@ -59,3 +67,10 @@ print("Summary sentences Outstd. BIO  - Analyse 2")
 print(summary(biologyOutstanding$sentencesTextAvg))
 print("Summary sentences Ord. BIO  - Analyse 2")
 print(summary(biologyOrdinary$sentencesTextAvg))
+
+
+existsDiff(biologyOutstanding$charactersTextAvg, biologyOrdinary$charactersTextAvg, "Bio Diff characters Outstd. Ord  - Analyse 2")
+print("Summary characters Outstd. BIO  - Analyse 2")
+print(summary(biologyOutstanding$charactersTextAvg))
+print("Summary characters Ord. BIO  - Analyse 2")
+print(summary(biologyOrdinary$charactersTextAvg))

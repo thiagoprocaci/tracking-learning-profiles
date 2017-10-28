@@ -108,6 +108,7 @@ print(summary(chemistryDataAnswersOutstanding$myCount))
 print("Chemistry Comments Number Ordinary Per Period")
 print(summary(chemistryDataCommentsOrdinary$myCount))
 
+source("../../functions/Functions.R")
 
 existsDiff(biologyDataQuestionOutstanding$myCount, biologyDataQuestionOrdinary$myCount, "Bio Question Diff Out. x Ord")
 existsDiff(biologyDataAnswersOutstanding$myCount, biologyDataAnswersOrdinary$myCount, "Bio Answers Diff Out. x Ord")

@@ -30,6 +30,14 @@ print("Summary sentences Ord. chemistry  - Analyse 1")
 print(summary(chemistryOrdinary$sentencesTextAvg))
 
 
+existsDiff(chemistryOutstanding$charactersTextAvg, chemistryOrdinary$charactersTextAvg, "chemistry Diff characters Outstd. Ord  - Analyse 1")
+print("Summary characters Outstd. chemistry  - Analyse 1")
+print(summary(chemistryOutstanding$charactersTextAvg))
+print("Summary characters Ord. chemistry  - Analyse 1")
+print(summary(chemistryOrdinary$charactersTextAvg))
+
+
+
 
 chemistryOutstanding = subset(chemistry, chemistry$profile_2 == 4)
 chemistryOrdinary = subset(chemistry, chemistry$profile_2 == 1)
@@ -59,6 +67,13 @@ print("Summary sentences Outstd. chemistry  - Analyse 2")
 print(summary(chemistryOutstanding$sentencesTextAvg))
 print("Summary sentences Ord. chemistry  - Analyse 2")
 print(summary(chemistryOrdinary$sentencesTextAvg))
+
+
+existsDiff(chemistryOutstanding$charactersTextAvg, chemistryOrdinary$charactersTextAvg, "chemistry Diff characters Outstd. Ord  - Analyse 2")
+print("Summary characters Outstd. chemistry  - Analyse 2")
+print(summary(chemistryOutstanding$charactersTextAvg))
+print("Summary characters Ord. chemistry  - Analyse 2")
+print(summary(chemistryOrdinary$charactersTextAvg))
 
 
 library(ggplot2)

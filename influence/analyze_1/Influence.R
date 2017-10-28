@@ -32,6 +32,10 @@ source("../../functions/Functions.R")
 biologyDataOutstanding = subset(biologyData, biologyData$containsOutstanding == 1)
 biologyDataOrdinary = subset(biologyData, biologyData$containsOutstanding == 0)
 
+
+print("Bio avg. size")
+print(summary(biologyData$avgSize))
+
 existsDiff(biologyDataOutstanding$avgSize, biologyDataOrdinary$avgSize, "Biology Avg discussion size outstanding x ordinary")
 print("Bio outstd. avg. size")
 print(summary(biologyDataOutstanding$avgSize))
