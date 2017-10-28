@@ -1,5 +1,6 @@
 library(caret)
 library(ggplot2)
+library(pROC)
 
 dataGraph = read.csv("biology_graph.csv", header = TRUE, sep = ";", dec = ",")
 index = 1
@@ -68,7 +69,8 @@ if(runModel) {
   recall <- cm$byClass['Sensitivity']
   
   print("F-measure")
-  print((2 * precision * recall)/(precision + recall))
+  fmeasure = (2 * precision * recall)/(precision + recall)
+  print(fmeasure)
   
 
   
@@ -77,7 +79,11 @@ if(runModel) {
   
   print(plot(modelFit, metric = "ROC", plotType = "level",
              scales = list(x = list(rot = 90))))
+  
 
+  predictions <- predict(modelFit, newdata = dataTest, type = "prob")
+  r = roc(dataTest$class, predictions[[2]])
+  print(r$auc)
   
   
 }
