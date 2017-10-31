@@ -1,7 +1,8 @@
 library(caret)
 library(ggplot2)
+library(pROC)
 
-dataNode2Vec = read.csv("bio-directed.emd", header = FALSE, sep = " ", dec = ".")
+dataNode2Vec = read.csv("bio-directed-1-walk.emd", header = FALSE, sep = " ", dec = ".")
 colnames(dataNode2Vec)[1] <- "id"
 
 dataUser = read.csv("bio.users_profile_2", header = TRUE, sep = ";")
@@ -67,5 +68,8 @@ if(runModel) {
   print(plot(modelFit, metric = "ROC", plotType = "level",
              scales = list(x = list(rot = 90))))
   
+  predictions <- predict(modelFit, newdata = dataTest, type = "prob")
+  r = roc(dataTest$class, predictions[[2]])
+  print(r$auc)
   
 }

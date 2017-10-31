@@ -1,0 +1,9 @@
+scenario;community;AUC;type
+"#1";"BQA";0,84;"manual"
+"#1";"CQA";0,82;"manual"
+"#2";"BQA";0,75;"manual"
+"#2";"CQA";0,77;"manual"
+"#1";"BQA";0,75;"auto"
+"#1";"CQA";0,77;"auto"
+"#2";"BQA";0,66;"auto"
+"#2";"CQA";0,73;"auto"

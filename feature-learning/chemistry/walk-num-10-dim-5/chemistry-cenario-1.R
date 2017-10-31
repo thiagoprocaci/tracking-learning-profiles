@@ -1,16 +1,17 @@
 library(caret)
 library(ggplot2)
+library(pROC)
 
 dataNode2Vec = read.csv("chemistry-directed.emd", header = FALSE, sep = " ", dec = ".")
 colnames(dataNode2Vec)[1] <- "id"
 
-dataUser = read.csv("chemistry.users_profile_2", header = TRUE, sep = ";")
+dataUser = read.csv("chemistry.users_profile_1", header = TRUE, sep = ";")
 
 data = merge(dataNode2Vec, dataUser, by = "id")
 index = 1
 while(index <= nrow(data)) {
   row = data[index, ]
-  if(row$profile_2 == 4) {
+  if(row$profile_1 == 4) {
     data[index, "class"] = 'outstanding'
   } else {
     data[index, "class"] = 'ordinary'
@@ -66,6 +67,11 @@ if(runModel) {
   
   print(plot(modelFit, metric = "ROC", plotType = "level",
              scales = list(x = list(rot = 90))))
+  
+  predictions <- predict(modelFit, newdata = dataTest, type = "prob")
+  r = roc(dataTest$class, predictions[[2]])
+  print(r$auc)
+  
   
   
 }
